@@ -1,0 +1,2 @@
+workon cv
+python3 yoloROS.py  --yolo yolo-coco
