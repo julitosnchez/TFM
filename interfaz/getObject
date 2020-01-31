@@ -1,0 +1,10 @@
+#!/bin/bash
+
+xterm -hold -e "rosrun but_calibration_camera_velodyne getObject _param:=$1" &
+pid=$!
+
+sleep 10
+
+kill $pid
+
+

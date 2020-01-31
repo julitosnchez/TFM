@@ -1,0 +1,10 @@
+#!/bin/bash
+
+
+xterm -hold -e "roslaunch laser3d data_gather_assembled_pololu_color.launch" &
+
+pid=$!
+
+sleep 10
+
+kill $pid

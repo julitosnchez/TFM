@@ -1,0 +1,11 @@
+#!/bin/bash
+
+xterm -hold -e "rosrun but_calibration_camera_velodyne extractCloud" &
+pid=$!
+
+sleep 10
+
+kill $pid
+
+
+

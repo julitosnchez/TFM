@@ -1,0 +1,30 @@
+#!/bin/bash
+
+#sudo chmod a+rw /dev/ttyUSB0
+sudo chmod a+rw /dev/ttyACM*
+
+xterm -hold -e "roscore" &
+sleep 2
+xterm -hold -e "roslaunch laser3d tf_laser.launch && /bin/tcsh" &
+#sleep 4
+xterm -hold -e "roslaunch laser3d controller_manager_velodyne.launch && /bin/tcsh" &
+sleep 2
+#xterm -hold -e "roslaunch laser3d pc_converter.launch" &
+sleep 2
+xterm -hold -e "roslaunch laser3d point_cloud_assembler.launch" &
+sleep 2
+xterm -hold -e "rosrun laser3d bin_pololu_plus_cloud && /bin/tcsh" &
+sleep 2
+xterm -hold -e "rosrun rosserial_python serial_node.py _port:=/dev/ttyACM0 _baud:=115200 && /bin/tcsh" &
+sleep 4
+xterm -hold -e "rosrun laser3d bin_motor_state_pub_velodyne && /bin/tcsh" &
+sleep 2
+#xterm -hold -e "rosrun laser3d bin_pc_tran && /bin/tcsh" &
+sleep 2
+xterm -hold -e "roslaunch laser3d pc1_to_pc2.launch" &
+sleep 2
+xterm -hold -e "roslaunch depth_deco tunhel.launch" &
+sleep 2
+xterm -hold -e "roslaunch but_calibration_camera_velodyne coloring.launch" &
+
+sleep 200000

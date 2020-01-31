@@ -1,0 +1,30 @@
+****************************************************************************************************************************************
+
+This documents describe how to make use of a GUI developed in the final thesis of Julio for assembling colored pointclouds, colored pointclouds detecting objects (and extracting them from the pointcloud). The previous works can be read in the document "Instrucciones" located in the same folder.
+
+- First, we have to locate where the "interfaz" folder is. Then, we have to enter in that folder: cd /path_to_folder
+- Then, we have to give permissions to the motor: sudo chmod 777 /dev/ttyACM0
+- After that, for executing the GUI: python gui.py
+
+From now, we can make use of the GUI for:
+ * Launching the system: Pressing button START
+ * Stopping the system: Pressing button START
+ 
+ * When the system is launched:
+    - We can get a normal pointcloud, a colored one or both.
+    - Once we have got a colored pointcloud, the procedure for getting objets is:
+         + Pressing button "Extract objects"
+         + Writting in the text are the object we want to extract and then --> press button "Get Object"
+
+
+********* The pointclouds that we obtain, are saved in the hidden folder .ros as pcd files *********************************************
+
+----------------------
+Additional information
+----------------------
+
+Due to that YOLO needs at least 2 seconds to classify an image, there are less colored pointclouds, so it is important to upload to Arduino the sketch "MotorControlRosImuYOLO" that increments the number of times the motor stop and increments the delay between two iterations.
+
+In case we want to color a pointcloud without recognizing objects, upload again the sketch "MotroControlRosImu"
+
+

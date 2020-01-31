@@ -1,0 +1,80 @@
+##################################################################################################################################################################
+
+This README describes the steps necessaries for getting a 360º pointcloud with the VLP16. For that, we make use of a Stepper Motor which with we rotate +/- 180º 
+and an inertial sensor to compesate the possibly inclination that the VLP16 had.
+
+############################## GETTING DATA ######################################################################################################################
+
+First, we neet to start of the C++-ROS nodes involved in the process:
+
+ 1.- We go to "/home/tunhel/catkin_ws" and we launch the script "launchScriptAssembled" : ./launchScriptAssembled
+
+   * For a proper functioning of the inertial sensor, it is important that cd ls before we launch the mentioned script, we assure that the red arrow is pointing to the 
+     position where the inertial sensor is placed.
+
+   * In the case that the stepper motor is not in the initial position: 
+     
+      ** Execute /home/tunhel/sources/arduino-1.8.5/arduino
+      ** Open "BasicStepperDriver"
+      ** Upload to the arduino board this sketch
+      ** Adjust the position of the motor with the instruction "stepper.rotate(n)" in the loop
+      ** Once you have placed the motor in its correct position, you have to upload again to the arduino board the sketch "MotorControlRosImu"
+
+   * If we want to change the number of clouds that will be recorded ... modify the variable "num_cloud (actually 500)" in "MotorControlRosImu"
+
+ 2.- Once is launched, lets proceed to save the information that could interest us : roslaunch laser3d data_gather_assembled_pololu.launch
+      
+      * In 1.bag it will be recorded the topics : /imu_laser_pub /tf /cloud_timestamp
+      * In 2.bag it will be recorded the topics : /assembled_cloud2
+
+############################## CALIBRATION ########################################################################################################################
+
+In case the system is not calibrated correctly, we will have to:
+
+ 1.- Lets save a cloud in 0 and another one in 180º : 
+  
+   * rosbag record /cloud_timestamp -l 1
+
+
+ 2.- Lets kill the process "launchScriptAssembled".Thanks to the step 1, we have two bags , each one contain a pointcloud1. To convert them to pointtcloud2 
+
+   * roslaunch laser3d pc1_to_pcd.launch
+
+   * rosbag record /cloud_timestamp2 -l 1
+
+   * rosbag play bag_1.bag/bag_2.bag
+
+ 3.- Copy the bags and paste them in the folder /home/tunhel/tunel . Open Matlab (/usr/local/MATLAB/R2018a/bin/matlab) and change current directory to that folder.
+
+
+   * To read the pointclouds : read_cloud_to_matlab.m
+
+ 4.- Cut the pointclouds (we are interested only in the roof). For that -- make use of "cropCloud.m" and "conditional_cropCloud.m" if you desire PAVEL.
+
+ 5.- Fit the planes with RANSAC:
+
+   * plane_n1 = pcfitplane(roof1,0.0017);
+   * plane_n2 = pcfitplane(roof2,0.0017);
+
+
+ 6.- Calculate the angle between the two planes: coseno=abs(dot(plane_n1.Normal,plane_n2.Normal)/(norm(plane_n1.Normal)*norm(plane_n2.Normal)));
+
+ 7.- Calculate the angle and the vector: angulo=acos(coseno); vector_giro = cross(plane_n1.Normal,plane_n2.Normal);
+
+
+ 8.- Copy the values and open the file /home/tunhel/catkin_ws/src/laser3d/src/motor_tf_pub_velodyne.cpp :
+
+
+   * Modify variable "ang" (double)
+   * Modify variable "vector" (tf::Vector3)
+
+ 9.- Compile the changes : make
+
+
+######################################################################################################################################################################
+
+If you want to detect 3D objects, then reads the document "InstruccionesExtraTFMJulio".
+
+
+
+
