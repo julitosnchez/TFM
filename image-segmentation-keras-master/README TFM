@@ -1,0 +1,4 @@
+1) Nos metemos entorno source ~/env/bin/activate
+2) Lanzamos saveImages.py
+3) Lanzamos coco ...  /home.../.virtualenvs 3.1) workon cv 3.2) python yoloROS.py --yolo yolo-coco
+4) Lanzamos publishImages.py
