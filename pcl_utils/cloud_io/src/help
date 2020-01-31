@@ -1,0 +1,25 @@
+The PCD format should be able to store the colors without any issue. The reason why the representation for the packed
+RGB is still float is purely for compatibility reasons. If we look again at
+
+136           uint8_t g = color.at <http://color.at><uint8_t>(u,v);
+137           int32_t rgb = (g << 16) | (g << 8) | g;
+138           points.channels[0].values.push_back(*(float*)(&rgb));
+
+
+this is how the values are encoded in <PointCloud.msg> messages: by simply converting the packed 24bit RGB into a float.
+
+> I had come into this trying to use pcd_viewer to quickly take a look at
+> some color point cloud data, perhaps I'm not going about this the best
+> way, however.
+
+
+If you look into libpcl_visualization (pcl_visualization/src/libpcl_visualization/pcl_point_cloud_handlers.cpp), we do
+the unpacking in a similar manner:
+
+140     int rgb = *reinterpret_cast<int*>(&rgb_data);
+141     scalar[0] = ((rgb >> 16) & 0xff);
+142     scalar[1] = ((rgb >> 8) & 0xff);
+143     scalar[2] = (rgb & 0xff);
+
+
+

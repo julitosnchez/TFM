@@ -1,0 +1,21 @@
+<launch>
+<arg name="folder" value="/media/jsm/Datasets/Pasillo_UC3M_1-3"/>
+
+
+<!--  Individuals clouds-->
+  <node pkg="rosbag" type="record" name="rosbag_record_data" args="record --duration=170 --output-prefix=$(arg folder)/velodyne_clouds /velodyne_points_2 "/>
+  <node pkg="rosbag" type="record" name="rosbag_record_data_2" args="record --duration=170 --output-prefix=$(arg folder)/colored_clouds /velodyne_colored_points_2"/>
+  <node pkg="rosbag" type="record" name="rosbag_record_data_3" args="record --limit=1 --duration=170 --output-prefix=$(arg folder)/tf /tf"/>
+  <node pkg="rosbag" type="record" name="rosbag_record_data_4" args="record --duration=170 --output-prefix=$(arg folder)/kinect_clouds /cloud_timestamp_kinect"/>
+
+
+<!--  Assembled Clouds  -->
+
+	<node pkg="rosbag" type="record" name="rosbag_record_data_6" args="record --duration=270 --buffsize=0 --output-prefix=$(arg folder)/coloredHD /assembled_cloud2_colored"/>
+	<node pkg="rosbag" type="record" name="rosbag_record_data_7" args="record --duration=270 --buffsize=0 --output-prefix=$(arg folder)/kinectHD /assembled_cloud2_kinect"/>
+  <node pkg="rosbag" type="record" name="rosbag_record_data_5" args="record --duration=270 --buffsize=0 --output-prefix=$(arg folder)/velodyneHD /assembled_cloud2"/>
+
+
+     
+	<node pkg="laser3d" name="laser_pololu_controller" type="bin_laser_pc_assemble_req_pololu" /> 
+</launch>

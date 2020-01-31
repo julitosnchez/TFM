@@ -1,0 +1,16 @@
+<launch>
+<arg name="folder" value="Pasillo_UC3M_1-3"/>
+
+
+<!--  Individuals clouds-->
+  <node pkg="rosbag" type="record" name="rosbag_record_data" args="record --duration=150 --output-prefix=$(arg folder)/velodyne_clouds /velodyne_points_2 "/>
+  <node pkg="rosbag" type="record" name="rosbag_record_data_3" args="record --limit=1 --duration=150 --output-prefix=$(arg folder)/odometry /odom /scan /tf"/>
+
+
+<!--  Assembled Clouds  -->
+  <node pkg="rosbag" type="record" name="rosbag_record_data_5" args="record --duration=150 --buffsize=0 --output-prefix=$(arg folder)/velodyneHD /assembled_cloud2"/>
+
+
+     
+	<node pkg="laser3d" name="laser_pololu_controller" type="bin_laser_pc_assemble_req_pololu_single" launch-prefix="xterm -e"/> 
+</launch>

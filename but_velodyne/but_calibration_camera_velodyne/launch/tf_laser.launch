@@ -1,0 +1,10 @@
+<launch>
+  <!-- imu to laser -->
+  <node pkg="tf" type="static_transform_publisher" name="rgb_to_velodyne_tf_broadcaster" args="0.141994 -0.0488426 0.0160775 0.0 0.0 0.0 1 kinect2_rgb_optical_frame velodyne 100" />
+
+ <!-- x y z qx qy qz qw frame_id child_frame_id -->
+  <node pkg="tf" type="static_transform_publisher" name="base_to_rgb_tf_broadcaster" args="0 0 0.4 0.0 0.0 0.0 1 base_link kinect2_rgb_optical_frame 100" /> 
+ <!-- laser to velodyne, esto para cuando gire el motor-->
+  <!--  <node pkg="laser3d" type="bin_motor_state_pub_velodyne" name="motor_tf_pub"/>  -->
+
+</launch>

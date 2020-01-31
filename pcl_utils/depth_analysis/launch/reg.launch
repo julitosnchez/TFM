@@ -1,0 +1,22 @@
+<launch>
+  <node pkg="depth_analysis" type="depth_header_change_node" name="depth_header_change_node" output="screen"/>
+
+  <node pkg="nodelet" type="nodelet" args="manager" name="depth_transforms_manager" output="screen"/>
+
+  <!-- Convert it into a point cloud -->
+  <node pkg="nodelet" type="nodelet" name="cloudify" args="load depth_image_proc/point_cloud_xyzrgb depth_transforms_manager --no-bond">
+    <remap from="depth_registered/image_rect" to="/camera/depth/image_rect_new"/>
+    <remap from="rgb/image_rect_color" to="/camera/rgb/image_rect_color"/>
+    <remap from="rgb/camera_info" to="/camera/rgb/camera_info"/>
+
+ <!--   <remap from="depth_registered/points" to="NUBE"/>
+    <node pkg="nodelet" type="nodelet" name="cloudify" args="load depth_image_proc/point_cloud_xyzrgb">   
+    <remap from="depth_registered/image_rect" to="/camera/depth/image_rect"/>
+    <remap from="rgb/image_rect_color" to="/camera/rgb/image_rect_color"/>
+    <remap from="rgb/camera_info" to="/camera/rgb/camera_info"/>
+    <remap from="depth_registered/points" to="NUBE"/>-->
+
+  </node>
+
+</launch>
+

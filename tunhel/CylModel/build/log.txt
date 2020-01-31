@@ -1,0 +1,75 @@
+Start time: Fri Jun 30 13:13:28 2017
+
+Evaluating initial population...
+Generation: 0
+Elapsed time: 0
+Deme: 0
+Evaluations: 300
+Stats: fitness
+	max: 0.0139344
+	min: 0.0139344
+	avg: 0.0139344
+	stdev: 3.08495e-17
+
+Generation: 1
+Elapsed time: 0
+Deme: 0
+Evaluations: 600
+Stats: fitness
+	max: 0.0139344
+	min: 0.0139344
+	avg: 0.0139344
+	stdev: 3.02784e-17
+
+Generation: 10
+Elapsed time: 1
+Deme: 0
+Evaluations: 3300
+Stats: fitness
+	max: 0.0139344
+	min: 0.0139344
+	avg: 0.0139344
+	stdev: 3.2035e-17
+
+Generation: 20
+Elapsed time: 2
+Deme: 0
+Evaluations: 6300
+Stats: fitness
+	max: 0.0139344
+	min: 0.0139344
+	avg: 0.0139344
+	stdev: 3.13428e-17
+
+Generation: 30
+Elapsed time: 3
+Deme: 0
+Evaluations: 9300
+Stats: fitness
+	max: 0.0139344
+	min: 0.0139344
+	avg: 0.0139344
+	stdev: 3.09814e-17
+
+Generation: 31
+Elapsed time: 3
+Deme: 0
+Evaluations: 9600
+Stats: fitness
+	max: 0.0139344
+	min: 0.0139344
+	avg: 0.0139344
+	stdev: 3.0952e-17
+
+Termination: maximum number of generations without improvement (30) reached
+
+Best of run: 
+<HallOfFame size="1">
+	<Individual size="3" gen="0">
+		<FitnessMin value="0.0139344"/>
+		<FloatingPoint size="1">	0.139336</FloatingPoint>
+		<FloatingPoint size="1">	-0.124338</FloatingPoint>
+		<FloatingPoint size="1">	0.91237</FloatingPoint>
+	</Individual>
+</HallOfFame>
+

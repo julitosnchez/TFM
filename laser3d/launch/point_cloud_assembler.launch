@@ -1,0 +1,26 @@
+<launch>
+  <node type="point_cloud_assembler" pkg="laser_assembler" name="my_assembler">
+    <remap from="cloud" to="/velodyne_points_2"/>
+    <param name="max_clouds" type="int" value="50000" /> 
+    <param name="fixed_frame" type="string" value="base_link" />
+  </node>
+
+	<!-- Servicio para ensamblar la nube coloreada usando la calibracion VLP16-KINECT -->
+
+  <node type="point_cloud_assembler" pkg="laser_assembler" name="my_assembler2">
+    <remap from="cloud" to="/velodyne_colored_points_2"/>
+		<remap from="assemble_scans" to="assembled_point_cloud"/>
+    <param name="max_clouds" type="int" value="50000" /> 
+    <param name="fixed_frame" type="string" value="base_link" />
+  </node>
+
+	<!-- Servicio para ensamblar las nubes procedentes de la Kinect -->
+
+  <node type="point_cloud_assembler" pkg="laser_assembler" name="my_assembler3">
+    <remap from="cloud" to="/cloud_timestamp_kinect"/>
+		<remap from="assemble_scans" to="assembled_point_cloud_kinect"/>
+    <param name="max_clouds" type="int" value="50000" /> 
+    <param name="fixed_frame" type="string" value="base_link" />
+  </node>
+
+</launch>

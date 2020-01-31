@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+  <node pkg="but_calibration_camera_velodyne" type="coloring" name="extractCloud" output="screen">
+  </node>
+</launch>
+

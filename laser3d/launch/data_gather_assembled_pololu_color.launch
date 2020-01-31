@@ -1,0 +1,14 @@
+<launch>
+<arg name="folder" value="Pasillo_UC3M_1-3"/>
+
+
+<!--  Individuals clouds-->
+  <node pkg="rosbag" type="record" name="rosbag_record_data_2" args="record --duration=150 --output-prefix=$(arg folder)/colored_clouds /velodyne_colored_points_2"/>
+
+
+<!--  Assembled Clouds  -->
+	<node pkg="rosbag" type="record" name="rosbag_record_data_6" args="record --duration=500 --buffsize=0 --output-prefix=$(arg folder)/coloredHD /assembled_cloud2_colored"/>
+
+     
+	<node pkg="laser3d" name="laser_pololu_controller" type="bin_laser_pc_assemble_req_pololu_color" /> 
+</launch>

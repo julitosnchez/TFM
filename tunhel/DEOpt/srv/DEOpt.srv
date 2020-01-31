@@ -1,0 +1,5 @@
+int64 N_DIM
+int64 POP
+int64 MAX_GENERATIONS
+---
+float64 sum

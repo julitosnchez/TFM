@@ -1,0 +1,46 @@
+<launch>
+  <!-- x y z qx qy qz qw frame_id child_frame_id -->
+
+
+  <!-- BASE TO IMU, ELEGIR SENSOR O TF -->
+<!--   <node pkg="tf" type="static_transform_publisher" name="world_to_base_broadcaster" args="0.0 0.0 0.0 0.0 0.0 0.0 1.0 world base_link 100" /> -->
+ 
+
+<!-- COMENTADO PARA HACER PRUEBAS : 26-03-19 -->
+<!--  <node pkg="laser3d" type="bin_imu_pub" name="imu_tf_pub"/> -->
+
+
+<!--  <node pkg="tf" type="static_transform_publisher" name="base_to_IMU_tf_broadcaster" args="0 0 0 0.0 0.707 0.0 0.707 base_link velodyne 100" />     -->
+
+  <!-- <node pkg="tf" type="static_transform_publisher" name="base_to_IMU_tf_broadcaster" args="0 0 0.5 0.0 -0.707 0.0 0.707 base_link laser 100" /> -->   
+
+	<!--  TRANSFORMACION ESTATICA LASER - VELODYNE (PRUEBAS) --> 
+  <node pkg="tf" type="static_transform_publisher" name="base_to_IMU_tf_broadcaster2" args="0 0.3 0 0.5 -0.5 -0.5 0.5 base_link base_link2 100" />  
+  
+<!-- IMU TO LASER -->
+  <!-- ESTA NO ESTABA COMENTADA <node pkg="tf" type="static_transform_publisher" name="IMU_to_laser_tf_broadcaster" args="0 0 0.175 0.5 -0.5 0.5 0.5 imu_link laser 100" /> -->
+   <!-- <node pkg="laser3d" type="bin_imu_to_laser" name="imu_to_laser"/> -->
+
+
+<!-- COMENTADO PARA HACER PRUEBAS : 26-03-19 -->
+<!--   <node pkg="tf" type="static_transform_publisher" name="IMU_to_laser_tf_broadcaster" args="0.0 0.0 0.001 0.0 0.0 -0.707 -0.707 imu_link velodyne 100"/> -->
+
+<!--  <node pkg="tf" type="static_transform_publisher" name="btv" args="0.0 0.0 0.1 0.0 0.707 0.0 0.707 base velodyne 100"/> -->
+
+
+
+
+   <!-- <node pkg="tf" type="static_transform_publisher" name="IMU_to_laser_tf_broadcaster" args="0 0 0.175 0.0 -0.707 0.0 0.707 imu_link laser 100"/> ESTO ESTABA FUNCIONANDO -->
+
+
+
+
+
+
+	<!-- TENEMOS DOS IMUS -->
+  <!-- <node pkg="laser3d" type="bin_imu_to_imu2" name="imu_to_2"/> -->
+
+  <!-- LASER TO VELODYNE --> 
+  <node pkg="laser3d" type="bin_motor_state_pub_velodyne" name="motor_tf_pos"/>
+
+</launch>

@@ -1,0 +1,12 @@
+<launch>
+	<!-- Laser Velodyne -->
+    <node pkg="velodyne_driver" type="velodyne_node" name="velodyne_driver_node" args="_model:=VLP-16"/> 
+
+  <!-- start Velodyne launcher -->
+  <include file="$(find velodyne_pointcloud)/launch/32e_points.launch">
+    <arg name="calibration" value="$(find laser3d)/config/VLP16.yaml"/>
+  </include>
+
+  <node pkg="tf" type="static_transform_publisher" name="laser_tf_broadcaster" args="0 0 0 0 0 0 1.0 base_link velodyne 100" />
+
+</launch>

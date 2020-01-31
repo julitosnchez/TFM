@@ -1,0 +1,10 @@
+102,220,225 persona
+151,062,068 mochila
+160,166,149 mochilaMano
+052,253,112 maleta
+235,245,026 pelota
+147,001,254 botella
+169,222,181 silla
+093,014,231 monitor
+150,059,189 portatil
+000,193,116 raton

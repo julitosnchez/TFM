@@ -1,0 +1,5 @@
+<launch>
+  <node pkg="rosbag" type="record" name="rosbag_record_data" args="record --duration=35 /assembled_cloud2 /imu_laser_pub /tf /laser_controller/state"/>   
+	<node pkg="laser3d" name="point_cloud_request" type="bin_laser_pc_assemble_req" />
+</launch>
+

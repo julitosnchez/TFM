@@ -1,0 +1,6 @@
+<launch>
+  <node pkg="rosbag" type="record" name="rosbag_record_data" args="record --duration=25
+ /velodyne_points /imu_laser_pub /laser_controller/state"/>   
+	<node pkg="laser3d" name="point_clouds_request" type="bin_laser_turn_req" />
+</launch>
+

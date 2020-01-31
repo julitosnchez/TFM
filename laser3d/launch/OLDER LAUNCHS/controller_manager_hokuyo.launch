@@ -1,0 +1,31 @@
+<launch>
+    <!-- Start the driver -->
+    <node name="dynamixel_manager" pkg="dynamixel_controllers" type="controller_manager.py" required="true" output="screen">
+        <rosparam>
+            namespace: dxl_manager
+            serial_ports:
+                motor_port:
+                    port_name: "/dev/ttyUSB0"
+                    baud_rate: 1000000
+                    min_motor_id: 1
+                    max_motor_id: 25
+                    update_rate: 20
+        </rosparam>
+    </node>
+
+	<!-- Laser Hokuyo -->
+  <node pkg="hokuyo_node" type="hokuyo_node" name="hokuyo_node"/> 
+
+	<!-- tf::Transform encodes like: (x,y,z,w), being the identity rotation = (0,0,0,1) -->
+  <!-- 0 0 0.5 0 -0.707 0 0.707 for the hokuyo laser, 0.5 meters could be any other distance--> 
+    <node pkg="tf" type="static_transform_publisher" name="laser_tf_broadcaster" args="0 0 0.5 0 -0.707 0 0.707 base_link laser_link 100" />
+
+  <node pkg="laser3d" type="bin_motor_state_pub_hokuyo" name="motor_tf_pub"/>
+
+  <!-- start rviz -->
+  <node pkg="rviz" type="rviz" name="my_rviz" args="-d $(find laser3d)/config/hokuyo.rviz"/>
+
+</launch>
+
+
+

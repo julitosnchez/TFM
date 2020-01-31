@@ -1,0 +1,22 @@
+<launch>
+
+ <!-- <node pkg="tf" type="static_transform_publisher" name="world_to_kinect2" args="0 0 1.0 -0.707 0.0 0.0 0.707 world kinect2_ir_optical_frame 100" />-->
+
+  <node pkg="tf" type="static_transform_publisher" name="world_to_kinect2" args="0 0 0.62 -0.707 0.0 0.0 0.707 base_link kinect_imu 100" />
+<!--  <node pkg="tf" type="static_transform_publisher" name="kinectimu_kinect" args="0 0 0 0 0 0 1 kinect_imu kinect2_ir_optical_frame 100" />-->
+<!--  <node pkg="tf" type="static_transform_publisher" name="world_to_rs" args="0 0 1.0 -0.707 0.0 0.0 0.707 base_link camera_depth_optical_frame 100" />   -->
+
+<!--  <node pkg="tf" type="static_transform_publisher" name="world_to_kinect2" args="0 0 0.0 0.0 -0.707 0.707 0.0 base_link kinect2_ir_optical_frame 100" /> -->
+
+
+
+<!--  <node pkg="tf" type="static_transform_publisher" name="world_to_kinect2" args="0 0 0.0 0 0 0 1.0 base_link kinect2_ir_optical_frame 100" />-->
+    
+  <node pkg="kinect2grabber" name="kinect" type="RosKinect2Grabber"/> 
+
+  <!-- <node pkg="depth_deco" name="detector" type="hole_detection_maxamtests" output="screen"/> -->
+  
+  
+<!--  <node pkg="rviz" type="rviz" name="my_rviz" args="-d $(find depth_deco)/rviz/testMaxam.rviz"/>-->
+ 
+</launch>

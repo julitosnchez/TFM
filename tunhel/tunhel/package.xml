@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package>
+  <name>tunhel</name>
+  <version>0.0.1</version>
+  <description>
+    The tunhel metapackage
+  </description>
+
+  <maintainer email="jcarball@pa.uc3m.es"></maintainer>
+  <maintainer email="dasanche@ing.uc3m.es"></maintainer>
+  <license>TODO</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+<!--  <run_depend>kinect2_calibration</run_depend> 
+  <run_depend>kinect2_viewer</run_depend>
+  <run_depend>kinect2_bridge</run_depend>
+  <run_depend>kinect2_registration</run_depend> -->
+
+  <export>
+    <metapackage/>
+  </export>
+</package>
